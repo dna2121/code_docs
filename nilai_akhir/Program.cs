@@ -6,12 +6,30 @@ using System.Threading.Tasks;
 
 namespace nilai_akhir
 {
+    /// <summary>
+    /// main class
+    /// </summary>
+    /// 
+    /// <remarks>class input merupakan class yang digunakan
+    /// untuk mengisi data, menjalankan proses dan menghasilkan output</remarks>
     class input
     {
+        /// <summary>
+        /// deklarasi variable mtk, bi, fis, bio, ki
+        /// </summary>
+        /// <remarks>mendeklarasikan variable untuk menyimpan nilai mata pelajaran matematika, bahasa indonesia, 
+        /// fisika, biologi, dan kimia</remarks>
         public double mtk, bi, fis, bio, ki;
+
+        /// <summary>
+        /// deklarasi variable nama
+        /// </summary>
+        /// <remarks>mendeklarasikan variable untuk menyimpan nilai nama</remarks>
         public string nama;
         
-
+        /// <summary>
+        /// untuk memasukkan nama dan nilai mata pelajaran
+        /// </summary>
         public void inputdata()
         {
             Console.Write("Nama Siswa = ");
@@ -28,13 +46,27 @@ namespace nilai_akhir
             ki = Convert.ToDouble(Console.ReadLine());
         }
 
+        /// <summary>
+        /// operasi rata-rata hasil nilai akhir siswa
+        /// </summary>
+        /// <param name="m">nilai mata pelajaran matematika yang akan dihitung dengan nilai mata pelajaran lainnya untuk hasil nilai akhir</param>
+        /// <param name="ind">nilai mata pelajaran bahasa indonesia yang akan dihitung dengan nilai mata pelajaran lainnya untuk hasil nilai akhir</param>
+        /// <param name="fi">nilai mata pelajaran fisika yang akan dihitung dengan nilai mata pelajaran lainnya untuk hasil nilai akhir</param>
+        /// <param name="bioo">nilai mata pelajaran biologi yang akan dihitung dengan nilai mata pelajaran lainnya untuk hasil nilai akhir</param>
+        /// <param name="kim">nilai mata pelajaran kimia yang akan dihitung dengan nilai mata pelajaran lainnya untuk hasil nilai akhir</param>
+        /// <returns>hasil dari jumlah nilai semua mata pelajaran kemudian dibagi 5</returns>
         public double nilaiakhir(double m, double ind, double fi, double bioo, double kim)
         {
             return (m + ind + fi + bioo + kim) / 5;
         }
 
+        /// <summary>
+        /// method untuk mengondisikan keterangan predikat
+        /// </summary>
+        /// <returns>predikat berupa abjad dari hasil pengondisian</returns>
         public string Keterangan()
         {
+            // deklarasi variable untuk menyimpan value keterangan berupa abjad
             string predikat;
             if (nilaiakhir(mtk,bi,fis,ki,bio) >= 90)
             {
@@ -71,6 +103,10 @@ namespace nilai_akhir
             return predikat;
         }
 
+        /// <summary>
+        /// method untuk mengondisikan keterangan kelulusan siswa
+        /// </summary>
+        /// <returns>hasil berupa lulus atau tidak lulus</returns>
         public string Keterangan2()
         {
             string hasil;
@@ -83,22 +119,33 @@ namespace nilai_akhir
                 hasil = "Belum Lulus";
             }
             return hasil;
-        }
+        }      
 
+        /// <summary>
+        /// method yang menghasilkan output kelulusan
+        /// </summary>
+        /// <remarks>pada method ini output yang ditampilkan berupa nilai akhir, predikat, dan hasil kelulusan.</remarks>
         public void output()
         {
             Console.WriteLine("Nilai Akhir = {0} \nPredikat = {1} \nHasil Kelulusan = {2}", nilaiakhir(mtk,bi,fis,ki,bio), Keterangan(), this.Keterangan2());
         }
     }
 
-
+    /// <summary>
+    /// class program
+    /// </summary>
+    /// <remarks>class yang digunakan untuk memanggil method dari class lain dan menjalankan program</remarks>
     class Program
     {
+        //method yang digunakan untuk mengeksekusi kode program
         static void Main(string[] args)
         {
+            //mendefinisikan class input
             input i = new input();
 
+            //memanggil method inputdata dari class i (input)
             i.inputdata();
+            //memanggil method output dari class i (input)
             i.output();
             Console.ReadLine();
         }
